@@ -14,9 +14,9 @@ function Dobrodosli() {
   const ura = time.getHours();
   let dobrodosli = '';
 
-  if (ura >= 5 && ura < 12) {
+  if (ura >= 5 && ura < 10) {
     dobrodosli = 'Dobro jutro';
-  } else if (ura >= 12 && ura < 18) {
+  } else if (ura >= 10 && ura < 18) {
     dobrodosli = 'Dober dan';
   } else {
     dobrodosli = 'Dober večer';
