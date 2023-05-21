@@ -5,10 +5,40 @@ const cors = require("cors");
 const pool = require("./baza");
 const bodyParser = require('body-parser');
 
+
+
 //middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+
+app.post('/api/admin', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const result = await pool.query('SELECT username, password FROM users WHERE username = $1 AND password = $2', [username, password]);
+
+    if (result.rows.length > 0) {
+      res.status(200).json(result.rows);
+    } else {
+      res.status(401).json({ message: 'Napačno uporabniško ime ali geslo' });
+    }
+  } catch (err) {
+    console.error('Napaka pri poizvedbi:', err);
+    res.status(500).json({ message: 'Napaka pri prijavi' });
+  }
+});
+
+// Prikaz časovnih vnosov
+app.get('/casovi', async (req, res) => {
+  try {
+    const casovi = await pool.query('SELECT * FROM sledenjacasa');
+    res.json(casovi);
+  } catch (error) {
+    console.error('Napaka pri pridobivanju časovnih vnosov:', error);
+    res.status(500).json({ error: 'Napaka pri pridobivanju časovnih vnosov' });
+  }
+});
 
 //vnese cas prihoda
 app.post('/api/casPrihod', async (req, res) => {

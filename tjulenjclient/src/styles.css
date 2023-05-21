@@ -1,3 +1,38 @@
 @import "rsuite/dist/rsuite.css";
 
+.usluzbenec-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .usluzbenec {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .ime {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .priimek {
+    margin-right: 5px;
+  }
+  
+  .funkcija {
+    color: #888;
+  }
+  
+  .casovi button {
+    margin-right: 5px;
+  }
+  
+  .delovni-cas {
+    margin-top: 5px;
+    font-style: italic;
+    color: #888;
+  }
+  
 #root{ padding: 10px; }

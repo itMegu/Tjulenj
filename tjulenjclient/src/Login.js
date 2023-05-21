@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ isAuthenticated, setAuthenticated }) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -20,33 +20,39 @@ const Login = ({ isAuthenticated, setAuthenticated }) => {
   }, []);
 
   const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const users = {
-      admin: {
-        password: 'admin',
-      },
-      Aljaz: {
-        password: 'Aljaz',
-      },
+  
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
     };
-
-    if (users[email] && users[email].password === password) {
-      const expirationTime = new Date().getTime() + 30 * 60 * 1000;
-      localStorage.setItem('expirationTime', expirationTime);
-      setAuthenticated(true);
-      localStorage.setItem('isAuthenticated', 'true');
-      navigate('/admin');
-      console.log('Prijavljen si kot', email);
-    } else {
-      setError('Napačno uporabniško ime ali geslo');
+  
+    try {
+      const response = await fetch(`http://192.168.50.5:5000/api/admin`, requestOptions);
+      const data = await response.json();
+  
+      if (response.ok) {
+        const expirationTime = new Date().getTime() + 30 * 60 * 1000;
+        localStorage.setItem('expirationTime', expirationTime);
+        setAuthenticated(true);
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/admin');
+        console.log('Prijavljen si kot', username);
+      } else {
+        setError(data.message || 'Napaka pri prijavi');
+      }
+    } catch (error) {
+      console.error('Napaka pri poizvedbi:', error);
+      setError('Napaka pri prijavi');
     }
   };
 
@@ -57,7 +63,7 @@ const Login = ({ isAuthenticated, setAuthenticated }) => {
       <form onSubmit={handleLogin}>
         <div>
           <label>Email:</label>
-          <input type="text" value={email} onChange={handleChangeEmail} required />
+          <input type="text" value={username} onChange={handleChangeEmail} required />
         </div>
         <div>
           <label>Geslo:</label>

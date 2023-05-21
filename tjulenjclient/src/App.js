@@ -26,7 +26,7 @@ function App() {
     <Fragment>
       <Vnos />
       <PrikazPodatkov />
-      <CasVnos />
+      <CasVnos /> 
       <button onClick={handleLogout}>Odjava</button>
     </Fragment>
   );
