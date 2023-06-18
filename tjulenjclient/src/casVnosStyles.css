@@ -1,0 +1,77 @@
+@import "rsuite/dist/rsuite.css";
+
+@font-face {
+  font-family: satoshi;
+  src: url(Satoshi-Variable.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: satoshi;
+  background-color: #333333;
+}
+
+.container {
+  background-color: #333333;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  left: 0;
+  position: relative;
+}
+
+.container h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.container .form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.container .inputBox {
+  margin-top: 10px;
+}
+
+.container .inputBox input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background-color: transparent;
+  color: #ddd;
+  outline: none;
+}
+
+.container .inputBox input::placeholder {
+  color: #ddd;
+}
+
+.container .inputBox input[type="submit"] {
+  background-color: #ccc;
+  color: black;
+  padding: 8px 16px; /* Reduce padding for a smaller button */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px; /* Adjust margin-top */
+  transition: box-shadow 0.3s ease;
+}
+
+.container .inputBox input[type="submit"]:hover {
+  box-shadow: -2px 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.container .error {
+  color: #ff0000;
+  margin-top: 10px;
+}

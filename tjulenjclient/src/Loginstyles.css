@@ -1,0 +1,77 @@
+@import "rsuite/dist/rsuite.css";
+
+@font-face {
+  font-family: satoshi;
+  src: url(Satoshi-Variable.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: satoshi;
+  background-color: #333333;
+}
+
+.signin {
+  height: 100vh;
+  width: 100%;
+  background-color: #333333;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inputBox {
+  margin-top: 10px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background-color: transparent;
+  color: #ddd;
+  outline: none;
+}
+
+.inputBox input::placeholder {
+  color: #ddd;
+}
+
+.inputBox input[type="submit"] {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.inputBox input[type="submit"]:hover {
+  box-shadow: -2px 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 10px;
+}

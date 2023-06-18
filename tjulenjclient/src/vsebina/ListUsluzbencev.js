@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles.css';
+import { useNavigate } from 'react-router-dom';
+import '../styleUsluzbenci.css';
 
 const EmployeeList = () => {
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
   const [checkIns, setCheckIns] = useState({});
 
@@ -75,17 +77,21 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
+      <h1>Prihod / Odhod</h1>
       <div className="employee-grid">
         {employees.map((employee) => (
           <div key={employee.id} className="employee-item">
-            <div>ID: {employee.id}</div>
-            <div>Ime: {employee.ime}</div>
-            <div>Priimek: {employee.priimek}</div>
-            <div>Funkcija: {employee.funkcija}</div>
-            <div>{renderButton(employee.id)}</div>
+            <div className="item">Ime: {employee.ime}</div>
+            <div className="item">Priimek: {employee.priimek}</div>
+            <div className="item">Funkcija: {employee.funkcija}</div>
+            <div className="item">ID: {employee.id}</div>
+            <div className="item">{renderButton(employee.id)}</div>
           </div>
         ))}
       </div>
+      <button className="home-button" onClick={() => navigate("/")}>
+        Domača stran
+      </button>
     </div>
   );
 };

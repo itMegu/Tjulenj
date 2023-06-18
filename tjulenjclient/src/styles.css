@@ -8,12 +8,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: satoshi;
-  background-color: #333333;
 }
 .naslov-container{
   height: 100vh;
   width: 100%;
-  background-color: #333333;
+  background-color: transparent;
   color: #ddd;
   display: flex;
   flex-direction: column;
@@ -76,6 +75,7 @@ tr:hover {
 
 .employee-item {
   border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -97,5 +97,153 @@ tr:hover {
 .gumb:hover{
   box-shadow: -2px 4px 8px rgba(255, 255, 255, 0.3);
 }
+
+.signin {
+  height: 100vh;
+  width: 100%;
+  background-color: #333333;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin h2 {
+  font-size: 30.8px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.inputBox {
+  margin-top: 11px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 11px;
+  font-size: 17.6px;
+  border: none;
+  border-bottom: 1.1px solid #ddd;
+  background-color: transparent;
+  color: #ddd;
+  outline: none;
+}
+
+.inputBox input::placeholder {
+  color: #ddd;
+}
+
+.inputBox input[type="submit"] {
+  background-color: #ccc;
+  color: black;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8.8px;
+  cursor: pointer;
+  font-size: 17.6px;
+  margin-top: 22px;
+  transition: box-shadow 0.33s ease;
+}
+
+.inputBox input[type="submit"]:hover {
+  box-shadow: -2.2px 4.4px 8.8px rgba(255, 255, 255, 0.33);
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 11px;
+}
+.container-prikaz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ddd;
+}
+
+.container-prikaz h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #ddd;
+  transition: background-color 0.3s ease;
+}
+
+tr:hover {
+  background-color: #606060;
+  cursor: pointer;
+}
+
+
+tbody tr:hover {
+  background-color: #606060;
+}
+.container-vnos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ddd;
+}
+
+.container-vnos h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+button:hover {
+  box-shadow: -2px 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+
 
 #root{ padding: 10px; }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Loginstyles.css'
 
 const Login = ({ isAuthenticated, setAuthenticated }) => {
   const [username, setUsername] = useState('');
@@ -57,23 +58,28 @@ const Login = ({ isAuthenticated, setAuthenticated }) => {
   };
 
   return (
-    <div>
-      <h2>Prijava</h2>
-      <br />
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input type="text" value={username} onChange={handleChangeEmail} required />
+    <form onSubmit={handleLogin}>
+      <div className='signin'>
+      <div className='content'>
+        <h2>Prijava</h2>
+      </div>
+      <div className='form'>
+        <div className='inputBox'>
+          <input type="text" name="Uporabnik" value={username} onChange={handleChangeEmail} required className='user'/>
         </div>
-        <div>
-          <label>Geslo:</label>
-          <input type="password" value={password} onChange={handleChangePassword} required />
-        </div>
-        <br />
-        <button type="submit">Prijavi se</button>
+      </div>
+      <div class="inputBox">
+        <input type="password" name="Uporabnik" value={password} onChange={handleChangePassword} required className='password'/>
+      </div>
+      <div className='inputBox'>
+        <button  type="submit">Prijavi se</button>
+      </div>
         {error && <p>{error}</p>}
-      </form>
-    </div>
+      </div>
+      <button className="home-button" onClick={() => navigate("/")}>
+        Domača stran
+      </button>
+    </form>
   );
 };
 

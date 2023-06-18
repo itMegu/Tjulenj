@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../casVnosStyles.css';
 
 function CasVnos() {
   const [usluzbenciid, setusluzbenciId] = useState('');
@@ -39,35 +40,30 @@ function CasVnos() {
   };
 
   return (
-    <div>
-      <label>
-        Usluzbencev id:
-        <input type="text" value={usluzbenciid} onChange={(e) => setusluzbenciId(e.target.value)} />
-      </label>
-      <br />
-      <br />
-      <div>
-        Ura je : {trenutnicas.toLocaleTimeString()}
-      </div>
-      <br />
-      <div>
-        {zabelezencas ? (
-          <div>
-            Čas prihoda: {casprihod.toLocaleString()}
-            <br />
-            <button onClick={handlecasOdhod}>Odhod</button>
-          </div>
-        ) : (
-          <button onClick={handlecasPrihod}>Prihod</button>
-        )}
-      </div>
-      <br />
-      <div>
-        {casodhoda && (
-          <div>
-            Ura odhoda: {casodhoda.toLocaleString()}
-          </div>
-        )}
+    <div className="container">
+      <h2>Cas Vnos</h2>
+      <div className="form">
+        <label>
+          Usluzbencev id:
+          <input type="text" placeholder="Vnesi ID" value={usluzbenciid} onChange={(e) => setusluzbenciId(e.target.value)} />
+        </label>
+        <br />
+        <br />
+        <div>Ura je : {trenutnicas.toLocaleTimeString()}</div>
+        <br />
+        <div>
+          {zabelezencas ? (
+            <div>
+              Čas prihoda: {casprihod.toLocaleString()}
+              <br />
+              <button onClick={handlecasOdhod}>Odhod</button>
+            </div>
+          ) : (
+            <button onClick={handlecasPrihod}>Prihod</button>
+          )}
+        </div>
+        <br />
+        <div>{casodhoda && <div>Ura odhoda: {casodhoda.toLocaleString()}</div>}</div>
       </div>
     </div>
   );

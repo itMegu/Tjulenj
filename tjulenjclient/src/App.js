@@ -23,12 +23,16 @@ function App() {
   };
 
   return (
-    <Fragment>
-      <Vnos />
-      <PrikazPodatkov />
-      <CasVnos /> 
-      <button onClick={handleLogout}>Odjava</button>
-    </Fragment>
+    <div>
+        <Vnos />
+        <PrikazPodatkov />
+        <CasVnos />
+        <div className='container'>
+            <div className="button-container">
+              <button onClick={handleLogout}>Odjava</button>
+            </div>
+          </div>
+    </div>
   );
 }
 

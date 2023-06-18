@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import '../styles.css'
 
 const PrikazPodatkov = () => {
   const [podatki, setPodatki] = useState([]);
@@ -19,25 +20,27 @@ const PrikazPodatkov = () => {
 
   return (
     <Fragment>
-      <h1>Prikaz Test</h1>
-      <table className="table mt-3">
-        <thead>
-          <tr>
-            <th>Ime</th>
-            <th>Priimek</th>
-            <th>Funkcija</th>
-          </tr>
-        </thead>
-        <tbody>
-          {podatki.map((podatek, index) => (
-            <tr key={index}>
-              <td>{podatek.ime}</td>
-              <td>{podatek.priimek}</td>
-              <td>{podatek.funkcija}</td>
+      <div className="container-prikaz">
+        <h1>Usluzbenci: </h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Ime</th>
+              <th>Priimek</th>
+              <th>Funkcija</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {podatki.map((podatek, index) => (
+              <tr key={index}>
+                <td>{podatek.ime}</td>
+                <td>{podatek.priimek}</td>
+                <td>{podatek.funkcija}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Fragment>
   );
 };
