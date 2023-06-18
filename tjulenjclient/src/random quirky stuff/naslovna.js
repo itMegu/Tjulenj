@@ -1,10 +1,13 @@
 import Dobrodosli from "./dobrodosli";
-import '../App.css'
 
-export default function Main() {
+import '../App.css';
+import '../styles.css';
+
+
+export default function Naslovna() {
     return (
       <>
-        <div className="text-center">
+        <div>
             <Dobrodosli />
         </div>
       </>

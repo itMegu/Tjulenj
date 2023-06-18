@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './index.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
-import Main from './random quirky stuff/naslovna';
 import Login from './Login';
+import Naslovna from './random quirky stuff/naslovna';
+import EmployeeList from './vsebina/ListUsluzbencev';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+  const PrivateRoute = ({ element: Element, ...rest }) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
   useEffect(() => {
+    
     const expirationTime = localStorage.getItem('expirationTime');
     const currentTime = new Date().getTime();
 
@@ -50,7 +53,7 @@ const Root = () => {
     <React.StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Naslovna />} />
           <Route
             path="/login"
             element={<Login isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />}
@@ -59,11 +62,11 @@ const Root = () => {
             path="/admin/*"
             element={<PrivateRoute element={App} />}
           />
+          <Route path="/belezenje" element={<EmployeeList></EmployeeList>} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
   );
 };
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Root />);
