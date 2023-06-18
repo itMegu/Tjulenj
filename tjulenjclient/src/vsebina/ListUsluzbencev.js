@@ -3,22 +3,22 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styleUsluzbenci.css';
 
-const EmployeeList = () => {
+const ListUsluzbencev = () => {
   const navigate = useNavigate();
-  const [employees, setEmployees] = useState([]);
+  const [usluzbenci, setUsluzbenci] = useState([]);
   const [checkIns, setCheckIns] = useState({});
 
   useEffect(() => {
-    const fetchEmployees = async () => {
+    const fetchUsluzbenci = async () => {
       try {
         const response = await axios.get('http://192.168.50.5:5000/ustvaritev');
-        setEmployees(response.data);
+        setUsluzbenci(response.data);
       } catch (error) {
         console.error('Error fetching employees:', error);
       }
     };
 
-    fetchEmployees();
+    fetchUsluzbenci();
   }, []);
 
   useEffect(() => {
@@ -28,31 +28,29 @@ const EmployeeList = () => {
     }
   }, []);
 
-  const handleCheckInOut = async (employeeId) => {
+  const handleCheckInOut = async (usluzbenciId) => {
     const currentTime = new Date().toISOString();
     const updatedCheckIns = { ...checkIns };
 
-    if (updatedCheckIns[employeeId]) {
-      // Employee already checked in, so it's a check-out
-      delete updatedCheckIns[employeeId];
+    if (updatedCheckIns[usluzbenciId]) {
+      delete updatedCheckIns[usluzbenciId];
       try {
         await axios.post('http://192.168.50.5:5000/api/checkout', {
-          employeeId,
+          usluzbenciId,
           checkOutTime: currentTime,
         });
       } catch (error) {
-        console.error('Error during check-out:', error);
+        console.error('Napaka pri odjavi:', error);
       }
     } else {
-      // Employee is checking in
-      updatedCheckIns[employeeId] = true;
+      updatedCheckIns[usluzbenciId] = true;
       try {
         await axios.post('http://192.168.50.5:5000/api/checkin', {
-          employeeId,
+          usluzbenciId,
           checkInTime: currentTime,
         });
       } catch (error) {
-        console.error('Error during check-in:', error);
+        console.error('Napaka pri prijavi:', error);
       }
     }
 
@@ -60,17 +58,15 @@ const EmployeeList = () => {
     sessionStorage.setItem('checkIns', JSON.stringify(updatedCheckIns));
   };
 
-  const renderButton = (employeeId) => {
-    const isCheckedOut = !checkIns[employeeId];
+  const renderButton = (usluzbenciId) => {
+    const isCheckedOut = !checkIns[usluzbenciId];
     if (isCheckedOut) {
-      // Employee has checked out or no data available, show check-in button
       return (
-        <button onClick={() => handleCheckInOut(employeeId)}>Check In</button>
+        <button onClick={() => handleCheckInOut(usluzbenciId)}>Prihod</button>
       );
     } else {
-      // Employee has checked in, show check-out button
       return (
-        <button onClick={() => handleCheckInOut(employeeId)}>Check Out</button>
+        <button onClick={() => handleCheckInOut(usluzbenciId)}>Odhod</button>
       );
     }
   };
@@ -79,13 +75,13 @@ const EmployeeList = () => {
     <div className="container">
       <h1>Prihod / Odhod</h1>
       <div className="employee-grid">
-        {employees.map((employee) => (
-          <div key={employee.id} className="employee-item">
-            <div className="item">Ime: {employee.ime}</div>
-            <div className="item">Priimek: {employee.priimek}</div>
-            <div className="item">Funkcija: {employee.funkcija}</div>
-            <div className="item">ID: {employee.id}</div>
-            <div className="item">{renderButton(employee.id)}</div>
+        {usluzbenci.map((usluzbenci) => (
+          <div key={usluzbenci.id} className="employee-item">
+            <div className="item">Ime: {usluzbenci.ime}</div>
+            <div className="item">Priimek: {usluzbenci.priimek}</div>
+            <div className="item">Funkcija: {usluzbenci.funkcija}</div>
+            <div className="item">ID: {usluzbenci.id}</div>
+            <div className="item">{renderButton(usluzbenci.id)}</div>
           </div>
         ))}
       </div>
@@ -96,4 +92,4 @@ const EmployeeList = () => {
   );
 };
 
-export default EmployeeList;
+export default ListUsluzbencev;

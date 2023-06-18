@@ -12,36 +12,34 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-// Endpoint for employee check-in
 app.post('/api/checkin', async (req, res) => {
-  const { employeeId, checkInTime } = req.body;
+  const { usluzbenciid, checkInTime } = req.body;
 
   try {
     await pool.query('INSERT INTO sledenjacasa (usluzbenciid, casprihod) VALUES ($1, $2)', [
-      employeeId,
+      usluzbenciid,
       checkInTime,
     ]);
 
     res.sendStatus(200);
   } catch (error) {
-    console.error('Error during check-in:', error);
+    console.error('Napaka pri prijavi:', error);
     res.sendStatus(500);
   }
 });
 
-// Endpoint for employee check-out
 app.post('/api/checkout', async (req, res) => {
-  const { employeeId, checkOutTime } = req.body;
+  const { usluzbenciid, checkOutTime } = req.body;
 
   try {
     await pool.query(
       'UPDATE sledenjacasa SET casodhoda = $1 WHERE usluzbenciid = $2 AND casodhoda IS NULL',
-      [checkOutTime, employeeId]
+      [checkOutTime, usluzbenciid]
     );
 
     res.sendStatus(200);
   } catch (error) {
-    console.error('Error during check-out:', error);
+    console.error('Napaka pri odjavi:', error);
     res.sendStatus(500);
   }
 });

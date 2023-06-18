@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
 import Login from './Login';
 import Naslovna from './random quirky stuff/naslovna';
-import EmployeeList from './vsebina/ListUsluzbencev';
+import ListUsluzbencev from './vsebina/ListUsluzbencev';
 
   const PrivateRoute = ({ element: Element, ...rest }) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
@@ -62,7 +62,7 @@ const Root = () => {
             path="/admin/*"
             element={<PrivateRoute element={App} />}
           />
-          <Route path="/belezenje" element={<EmployeeList></EmployeeList>} />
+          <Route path="/belezenje" element={<ListUsluzbencev></ListUsluzbencev>} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
